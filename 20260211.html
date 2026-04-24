@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员类型与次卡券使用说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        
+        .container {
+            width: 98%;
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        h2 {
+            color: #4CAF50;
+            margin: 20px 0 10px;
+            font-size: 18px;
+        }
+        
+        h3 {
+            color: #333;
+            margin: 15px 0 10px;
+            font-size: 16px;
+        }
+        
+        h4 {
+            color: #666;
+            margin: 10px 0 8px;
+            font-size: 14px;
+        }
+        
+        .note {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        .info {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #0c5460;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: #fff;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: normal;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 10px 8px;
+            border: 1px solid #ddd;
+            font-size: 13px;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e8f5e9;
+        }
+        
+        .highlight {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        
+        .success {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        
+        ul {
+            margin: 10px 0 10px 25px;
+            line-height: 1.8;
+        }
+        
+        li {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>会员类型与次卡券使用说明</h1>
+        
+        <h2>一、会员类型（会员等级）说明</h2>
+        
+        <h3>1. 基本概念</h3>
+        <ul>
+            <li><strong>会员类型 = 会员等级</strong>：不同等级享受不同的优惠和权益</li>
+            <li><strong>等级折扣</strong>：每个会员类型可设置独立的折扣比例（如 95%、90%、85%）</li>
+            <li><strong>首次开卡最低金额</strong>：首次充值时的最低金额限制（必须 ≥ 此金额）</li>
+            <li><strong>续费充值最低金额</strong>：后续充值时的最低金额限制（必须 ≥ 此金额）</li>
+            <li><strong>自动升级累计金额</strong>：累计充值达到此金额时，自动升级到该会员类型</li>
+        </ul>
+        
+        <h3>2. 自动升级功能</h3>
+        <div class="info">
+            <strong>📌 开关位置：</strong>系统配置 > 会员配置 > 卡类型自动升级（开关）
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%;">开关状态</th>
+                    <th style="width: 70%;">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="success">✅ 开启自动升级</td>
+                    <td>
+                        当会员累计充值金额达到某个会员类型的"自动升级累计金额"时，系统自动将会员升级到该类型。<br>
+                        <strong>示例：</strong>VIP卡设置自动升级累计金额为 ¥1000，当会员累计充值达到 ¥1000 时，自动升级为 VIP卡。
+                    </td>
+                </tr>
+                <tr>
+                    <td class="highlight">❌ 关闭自动升级</td>
+                    <td>
+                        会员类型不会自动升级，需要手动修改会员类型。<br>
+                        "自动升级累计金额"字段不生效。
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="note">
+            <strong>💡 注意：</strong>
+            <ul style="margin: 5px 0 0 20px;">
+                <li>自动升级累计金额必须唯一，不能有两个会员类型设置相同的金额</li>
+                <li>如果当前会员所属的类型已停用，则不会对此类型的卡进行自动升级</li>
+                <li>首次开卡最低金额和续费充值最低金额需是"充值金额倍数配置值"的倍数</li>
+            </ul>
+        </div>
+        
+        <h3>3. 双重折扣应用范围</h3>
+        <div class="info">
+            <strong>📌 开关位置：</strong>在编辑房间/商品/次卡券/套餐时，有"是否参与会员类型折扣"开关<span style="color: #d32f2f; font-weight: bold;">（默认开启）</span>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">应用场景</th>
+                    <th style="width: 35%;">折扣说明</th>
+                    <th style="width: 40%;">计算公式</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>房间消费</strong></td>
+                    <td>会员类型折扣应用于房间标准价</td>
+                    <td>房间金额 = 标准价 × 时长 × 会员折扣 × <span style="color: #d32f2f; font-weight: bold;">会员类型折扣</span></td>
+                </tr>
+                <tr>
+                    <td><strong>商品购买</strong></td>
+                    <td>会员类型折扣应用于商品价格</td>
+                    <td>商品金额 = 单价 × 数量 × 会员折扣 × <span style="color: #d32f2f; font-weight: bold;">会员类型折扣</span></td>
+                </tr>
+                <tr>
+                    <td><strong>次卡券购买</strong></td>
+                    <td>会员类型折扣应用于次卡券价格</td>
+                    <td>次卡券金额 = 次卡券价格 × 会员折扣 × <span style="color: #d32f2f; font-weight: bold;">会员类型折扣</span></td>
+                </tr>
+                <tr>
+                    <td><strong>套餐购买</strong></td>
+                    <td>会员类型折扣应用于套餐价格</td>
+                    <td>套餐金额 = 套餐价格 × 会员折扣 × <span style="color: #d32f2f; font-weight: bold;">会员类型折扣</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+        
+        <h2>二、次卡券使用说明</h2>
+        
+        <h3>1. 基本概念</h3>
+        <ul>
+            <li><strong>次卡券配置位置</strong>：后台>>会员服务</li>
+            <li><strong>次卡券销售位置</strong>：在"商品销售"中，有独立的"次卡券"分类</li>
+            <li><strong>购买限制</strong>：次卡券只能使用会员卡支付</li>
+            <li><strong>兑换功能</strong>：次卡券可兑换商品或房间时长</li>
+        </ul>
+        
+        <h3>2. 次卡券类型</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">类型</th>
+                    <th style="width: 35%;">说明</th>
+                    <th style="width: 40%;">使用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>商品次卡券</strong></td>
+                    <td>可兑换指定商品的次数<br>例如：10次饮料券</td>
+                    <td>在"商品购买"界面（<span class="highlight">仅单品购买</span>）选择次卡券，自动抵扣商品数量</td>
+                </tr>
+                <tr>
+                    <td><strong>房间次卡券</strong></td>
+                    <td>可兑换房间时长<br>例如：20小时房间券</td>
+                    <td>在"开台/加时"界面输入会员卡后选择次卡券，自动填充时长并设置金额为0</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>3. 次卡券使用规则</h3>
+        
+        <h4>3.1 商品次卡券使用</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">场景</th>
+                    <th style="width: 35%;">抵扣规则</th>
+                    <th style="width: 40%;">支付金额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>完全抵扣</strong></td>
+                    <td>次卡券次数 ≥ 购买数量<br>例如：次卡券10次，购买5个</td>
+                    <td class="success">支付金额 = ¥0.00<br>扣除次卡券5次</td>
+                </tr>
+                <tr>
+                    <td><strong>部分抵扣</strong></td>
+                    <td>次卡券次数 < 购买数量<br>例如：次卡券3次，购买5个</td>
+                    <td class="highlight">支付金额 = 2个商品的价格<br>扣除次卡券3次</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>3.2 房间次卡券使用</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">使用场景</th>
+                    <th style="width: 35%;">时长设置</th>
+                    <th style="width: 40%;">支付金额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>开台</strong></td>
+                    <td>自动填充次卡券时长</td>
+                    <td class="success">支付金额 = ¥0.00</td>
+                </tr>
+                <tr>
+                    <td><strong>加时</strong></td>
+                    <td>自动填充次卡券时长</td>
+                    <td class="success">支付金额 = ¥0.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>4. 数据查询</h3>
+        <ul>
+            <li>报表系统提供三个次卡券相关报表，可查询次卡券的销售、使用和持有账户等数据</li>
+        </ul>
+    </div>
+</body>
+</html>

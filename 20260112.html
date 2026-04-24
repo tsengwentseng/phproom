@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>房间管理系统 - 开台/加时加购业务逻辑表</title>
+        <style>
+            /* 全局样式重置 */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Microsoft YaHei", Arial, sans-serif;
+            }
+
+            /* 页面容器 */
+            .container {
+                width: 98%;
+                max-width: 1600px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            /* 标题样式 */
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 30px;
+                font-size: 24px;
+            }
+
+            h2 {
+                color: #4caf50;
+                margin: 20px 0 10px;
+                font-size: 18px;
+            }
+
+            .precondition {
+                background-color: #e8f5e9;
+                padding: 10px 15px;
+                border-left: 4px solid #4caf50;
+                margin: 10px 0 20px;
+                font-size: 14px;
+                color: #333;
+            }
+
+            .note {
+                margin: 15px 0;
+                padding: 10px;
+                background-color: #fff3cd;
+                border: 1px solid #ffeeba;
+                border-radius: 4px;
+                font-size: 13px;
+                color: #856404;
+            }
+
+            /* 表格样式 */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+                background-color: #fff;
+            }
+
+            /* 表头样式 */
+            th {
+                background-color: #4caf50;
+                color: white;
+                padding: 12px 8px;
+                text-align: left;
+                font-weight: normal;
+                border: 1px solid #ddd;
+                font-size: 14px;
+                position: sticky;
+                top: 0; /* 表头固定 */
+                white-space: nowrap;
+            }
+
+            /* 固定列宽 */
+            th:nth-child(1),
+            td:nth-child(1) {
+                width: 12%;
+            } /* 场景 */
+            th:nth-child(2),
+            td:nth-child(2) {
+                width: 12%;
+            } /* 时长 */
+            th:nth-child(3),
+            td:nth-child(3) {
+                width: 18%;
+            } /* 预付金额 */
+            th:nth-child(4),
+            td:nth-child(4) {
+                width: 12%;
+            } /* 是否可修改 */
+            th:nth-child(5),
+            td:nth-child(5) {
+                width: 20%;
+            } /* 会员折扣 */
+            th:nth-child(6),
+            td:nth-child(6) {
+                width: 26%;
+            } /* 金额构成 */
+
+            /* 单元格样式 */
+            td {
+                padding: 10px 8px;
+                border: 1px solid #ddd;
+                font-size: 13px;
+                line-height: 1.5;
+                vertical-align: top;
+            }
+
+            /* 奇偶行背景色区分 */
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            /* 鼠标悬停行高亮 */
+            tr:hover {
+                background-color: #e8f5e9;
+            }
+
+            /* 响应式处理：小屏幕横向滚动 */
+            .table-wrapper {
+                overflow-x: auto;
+                margin-bottom: 20px;
+            }
+
+            /* 强调文本样式 */
+            .highlight {
+                color: #d32f2f;
+                font-weight: bold;
+            }
+
+            .success {
+                color: #2e7d32;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>房间管理系统 - 开台/加时加购业务逻辑表</h1>
+
+            <p
+                style="
+                    color: #d32f2f;
+                    margin: 20px 0 10px;
+                    font-size: 18px;
+                    font-weight: bold;
+                "
+            >
+                套餐说明：可视为快速设定的计时计费规则
+            </p>
+
+            <!-- 1 自定义输入模式 -->
+            <h2>1 自定义输入模式（未启用标准价）</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>场景</th>
+                            <th>时长</th>
+                            <th>预付金额</th>
+                            <th>金额是否可修改</th>
+                            <th>会员折扣</th>
+                            <th>金额构成</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>套餐+商品</strong></td>
+                            <td>固定（套餐时长）</td>
+                            <td>套餐金额+商品金额</td>
+                            <td class="highlight">❌ 不可修改</td>
+                            <td>套餐折扣+商品自身折扣<br />房间折扣不参与</td>
+                            <td>订单金额=套餐金额<br />商品金额=商品总价</td>
+                        </tr>
+                        <tr>
+                            <td><strong>仅套餐</strong></td>
+                            <td>固定（套餐时长）</td>
+                            <td>套餐金额</td>
+                            <td class="highlight">❌ 不可修改</td>
+                            <td>以套餐折扣为准</td>
+                            <td>订单金额=套餐金额<br />商品金额=0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>仅商品</strong></td>
+                            <td>可修改</td>
+                            <td>默认=商品金额</td>
+                            <td class="success">✅ 可修改（需≥商品金额）</td>
+                            <td>商品自身折扣</td>
+                            <td>
+                                订单金额=输入金额-商品金额<br />商品金额=商品总价
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>无加购</strong></td>
+                            <td>可修改</td>
+                            <td>用户输入</td>
+                            <td class="success">✅ 可修改</td>
+                            <td>无</td>
+                            <td>订单金额=输入金额<br />商品金额=0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr
+                style="margin: 30px 0; border: none; border-top: 1px solid #ddd"
+            />
+
+            <!-- 2 标准价模式（开启（开台/加时）费用编辑功能） -->
+            <h2>2 标准价模式（开启（开台/加时）费用编辑功能）</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>场景</th>
+                            <th>时长</th>
+                            <th>预付金额</th>
+                            <th>金额是否可修改</th>
+                            <th>会员折扣</th>
+                            <th>金额构成</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>套餐+商品</strong></td>
+                            <td>固定（套餐时长）</td>
+                            <td>套餐金额+商品金额</td>
+                            <td class="highlight">❌ 不可修改</td>
+                            <td>以套餐折扣为准<br />房间折扣不参与</td>
+                            <td>订单金额=套餐金额<br />商品金额=商品总价</td>
+                        </tr>
+                        <tr>
+                            <td><strong>仅套餐</strong></td>
+                            <td>固定（套餐时长）</td>
+                            <td>套餐金额</td>
+                            <td class="highlight">❌ 不可修改</td>
+                            <td>以套餐折扣为准<br />房间折扣不参与</td>
+                            <td>订单金额=套餐金额<br />商品金额=0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>仅商品</strong></td>
+                            <td>可修改</td>
+                            <td>标准价×时长×房间折扣+商品金额</td>
+                            <td class="success">✅ 可修改（需≥商品金额）</td>
+                            <td>房间会员折扣+商品自身折扣</td>
+                            <td>
+                                订单金额=输入金额-商品金额<br />商品金额=商品总价
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>无加购</strong></td>
+                            <td>可修改</td>
+                            <td>标准价×时长×房间折扣</td>
+                            <td class="success">✅ 可修改</td>
+                            <td>房间会员折扣</td>
+                            <td>订单金额=输入金额<br />商品金额=0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr
+                style="margin: 30px 0; border: none; border-top: 1px solid #ddd"
+            />
+
+            <!-- 3 标准价模式（关闭（开台/加时）费用编辑功能） -->
+            <h2>3 标准价模式（关闭（开台/加时）费用编辑功能）</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>场景</th>
+                            <th>时长</th>
+                            <th>预付金额</th>
+                            <th>金额是否可修改</th>
+                            <th>会员折扣</th>
+                            <th>金额构成</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>套餐+商品</strong></td>
+                            <td>固定（套餐时长）</td>
+                            <td>套餐金额+商品金额</td>
+                            <td class="highlight">❌ 不可修改</td>
+                            <td>以套餐折扣为准<br />房间折扣不参与</td>
+                            <td>订单金额=套餐金额<br />商品金额=商品总价</td>
+                        </tr>
+                        <tr>
+                            <td><strong>仅套餐</strong></td>
+                            <td>固定（套餐时长）</td>
+                            <td>套餐金额</td>
+                            <td class="highlight">❌ 不可修改</td>
+                            <td>以套餐折扣为准<br />房间折扣不参与</td>
+                            <td>订单金额=套餐金额<br />商品金额=0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>仅商品</strong></td>
+                            <td>可修改</td>
+                            <td>标准价×时长×房间折扣+商品金额</td>
+                            <td class="highlight">❌ 不可修改</td>
+                            <td>房间会员折扣+商品自身折扣</td>
+                            <td>
+                                订单金额=标准价×时长×房间折扣<br />商品金额=商品总价
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>无加购</strong></td>
+                            <td>可修改</td>
+                            <td>标准价×时长×房间折扣</td>
+                            <td class="highlight">❌ 不可修改</td>
+                            <td>房间会员折扣</td>
+                            <td>
+                                订单金额=标准价×时长×房间折扣<br />商品金额=0
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

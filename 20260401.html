@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桌码相关功能逻辑</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        
+        .container {
+            width: 98%;
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        h2 {
+            color: #4CAF50;
+            margin: 20px 0 10px;
+            font-size: 18px;
+        }
+        
+        h3 {
+            color: #333;
+            margin: 15px 0 10px;
+            font-size: 16px;
+        }
+        
+        h4 {
+            color: #666;
+            margin: 10px 0 8px;
+            font-size: 14px;
+        }
+        
+        .note {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        .info {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #0c5460;
+        }
+        
+        .warning {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #721c24;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: #fff;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: normal;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 10px 8px;
+            border: 1px solid #ddd;
+            font-size: 13px;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e8f5e9;
+        }
+        
+        .highlight {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        
+        .success {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        
+        ul {
+            margin: 10px 0 10px 25px;
+            line-height: 1.8;
+        }
+        
+        li {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            margin: 10px 0;
+        }
+        
+        .step-list li {
+            counter-increment: step-counter;
+            margin: 10px 0;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #4CAF50;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>桌码相关功能逻辑</h1>
+        
+        <h2>一、内网穿透配置说明</h2>
+                
+        <div class="info">
+            <strong>📌 建议配置：</strong>通过内网穿透将本地服务器映射到公网，方便远程访问。不然只能局域网扫码使用。
+        </div>
+                
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">配置项</th>
+                    <th style="width: 35%;">推荐值</th>
+                    <th style="width: 40%;">说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>本地服务器地址</strong></td>
+                    <td class="success">127.0.0.1</td>
+                    <td>本机 IP 或局域网的服务器</td>
+                </tr>
+                <tr>
+                    <td><strong>本地端口</strong></td>
+                    <td class="success">9000</td>
+                    <td>本地服务器监听端口，不可更改</td>
+                </tr>
+                <tr>
+                    <td><strong>外部端口</strong></td>
+                    <td class="highlight">自行配置</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>公网域名</strong></td>
+                    <td class="highlight">自行配置</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+                 
+        <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+                
+        <h2>二、桌码相关配置</h2>
+                
+        <h3>1、后台房间管理页面配置</h3>
+        <div class="info">
+            <strong>📌 路径：</strong>后台 > 房间管理
+        </div>
+                
+        <h3>2、桌码提醒文案配置</h3>
+        <div class="info">
+            <strong>📌 路径：</strong>后台 > 系统配置 > 超时提醒
+        </div>
+        
+        <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+        
+        <h2>三、桌码提醒条说明</h2>
+        
+        <div class="warning">
+            <strong>⚠️ 重要自动规则：</strong>任何情况下，提醒条创建的时间超过<strong>"强制订单超期静音或设备执行 (秒)"</strong>这个配置后，都会自动静音和消失。
+        </div>
+        
+        <h4><strong>【静音】按钮</strong></h4>
+        <ul class="step-list">
+            <li>只关掉提醒的提示声音</li>
+            <li>提醒条会留在页面上，方便查看</li>
+        </ul>
+        
+        <h4><strong>【关闭】按钮</strong></h4>
+        <ul class="step-list">
+            <li>对应的提醒条音频关闭，提醒条消失</li>
+        </ul>
+    </div>
+</body>
+</html>

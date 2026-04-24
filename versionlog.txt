@@ -1,0 +1,42 @@
+<font color="green">#20260420</font><br>
+1、新增用户管理功能，本次更新后默认用户名admin，密码不变。可通过后台>用户管理，添加用户。<br>
+2、新增交接班功能。<br>
+3、更新了webview工具<a href="https://wwbst.lanzoul.com/b0187zv5cb" target="_blank" rel="noopener noreferrer">点击下载密码6666</a>。<br>
+<font color="green">#20260411</font><br>
+1、配置新增了开台赠送时长功能。<br>
+2、首页房间管理新增了紧凑模式。<br>
+3、功能优化，修复已知问题。<br>
+<font color="green">#20260403</font><br>
+1、修复部分设备读写数据库卡顿、操作加载缓慢的问题。<br>
+<font color="green">#20260401</font><br>
+1、优化逻辑，修复已知问题。<br>
+2、新增会员0元开卡功能，需开启配置开关。<br>
+3、新增桌码功能。配置后，客户扫码查看房间时间，可进行呼叫服务和发送核销码功能。<a href="#" data-render-url="https://gitee.com/phproom/phproom/raw/master/20260401.html">点击查看</a>桌码相关逻辑。<br>
+<font color="green">#20260312</font><br>
+1、优化逻辑，修复已知问题。<br>
+2、更新了webview工具<a href="https://wwbst.lanzoul.com/b0187zv5cb" target="_blank" rel="noopener noreferrer">点击下载密码6666</a>。<br>
+<font color="green">#20260307</font><br>
+1、优化多客户端信息同步机制，<font color="red">版本号低于此版本的，更新后需下载补丁20260307.zip</font><a href="https://wwbst.lanzoul.com/b0187zv5cb" target="_blank" rel="noopener noreferrer">点击下载密码6666</a><br>
+2、房间新增用途标签功能。<br>
+<font color="green">#20260227</font><br>
+1、新增会员卡类型(等级)功能。默认是普通卡。<br>
+2、新增会员次卡券功能，抵扣房间时长或兑换单品商品。<br>
+3、<a href="#" data-render-url="https://gitee.com/phproom/phproom/raw/master/20260211.html">点击查看</a>会员类型与次卡券使用说明。<br>
+4、更新了webview工具<a href="https://wwbst.lanzoul.com/b0187zv5cb" target="_blank" rel="noopener noreferrer">点击下载密码6666</a>，配合一些收银插件可以实现微信、支付宝支付方式的扫码收款，测试收款小精灵可以获取金额扫码收款，其他同类软件应该功能类似。<br>
+<font color="green">#20260204</font><br>
+1、后台增加商品库存功能，默认允许0库存销售。<br>
+2、优化打印功能，配合webview工具<a href="https://wwbst.lanzoul.com/b0187zv5cb" target="_blank" rel="noopener noreferrer">点击下载密码6666</a>
+实现系统使用和自动打印服务。<br>
+3.1、新增挂单功能，通过支付方式挂单控制（默认在隐藏处），挂单金额在结账附加费处统一收费。<br>
+3.2、挂单结账使用会员卡时会根据历史记录应用会员折扣。包括房间折扣、套餐折扣、商品折扣。<br>
+4、房间卡片新增收入金额（包含订单和商品），正常绿色。如果存在挂单则为红色显示。<br>
+<font color="green">#20260125</font><br>
+1、房间增加换房、暂停计时功能。<br>
+2、房间和商品会员卡支付新增手机尾号查询功能。<br>
+3、会员服务新增查询卡消费或充值记录功能。<br>
+4、超时音频提醒支持提前或推迟配置。<br>
+5、提醒支持TTS文本转语音功能，可实现具体房间事件播报。<br>
+6、其他新增功能可查看后台系统配置相关设置。<br>
+<font color="green">#20260112</font><br>
+<font color="red">#当前版本低于此版本的，需要更新2次。首次更新完成后，重新打开页面，使用重新更新功能在更新一次！</font><br>
+新增房间使用套餐(计时计费规则)和加购商品功能，<a href="#" data-render-url="https://gitee.com/phproom/phproom/raw/master/20260112.html">点击查看</a>几种模式下的逻辑。<br>
