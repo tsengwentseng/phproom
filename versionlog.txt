@@ -1,3 +1,5 @@
+<font color="green">#20260524</font><br>
+1、修复已知问题。<br>
 <font color="green">#20260513</font><br>
 1、修复已知问题。<br>
 2、后台配置新增了一些功能。<br>
