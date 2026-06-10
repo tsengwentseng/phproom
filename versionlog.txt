@@ -1,3 +1,5 @@
+<font color="green">#20260610</font><br>
+1、会员开卡充值新增查询卡对应次卡券数据功能。<br>
 <font color="green">#20260524</font><br>
 1、修复已知问题。<br>
 <font color="green">#20260513</font><br>
