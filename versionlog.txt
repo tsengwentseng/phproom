@@ -1,3 +1,5 @@
+<font color="green">#20260709</font><br>
+1、增加租赁功能，默认关闭，后台>系统配置>系统设置开启。<br>
 <font color="green">#20260629</font><br>
 1、修复已知问题。<br>
 <font color="green">#20260610</font><br>
