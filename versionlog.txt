@@ -1,3 +1,5 @@
+<font color="green">#20260808</font><br>
+1、细节优化。<br>
 <font color="green">#20260728</font><br>
 1、修复已知问题。<br>
 2、超时提醒新增了一些功能，后台>系统配置>超时提醒查看<br>
