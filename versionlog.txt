@@ -1,3 +1,7 @@
+<font color="green">#20260818</font><br>
+1、重构预定管理功能，查看更直观。<br>
+2、订单编辑功能增加编辑金额功能。<br>
+3、修复已知问题。<br>
 <font color="green">#20260808</font><br>
 1、细节优化。<br>
 <font color="green">#20260728</font><br>
