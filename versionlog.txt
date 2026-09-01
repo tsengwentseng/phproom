@@ -1,3 +1,6 @@
+<font color="green">#20260902</font><br>
+1、细节优化。<br>
+2、修复已知问题。<br>
 <font color="green">#20260827</font><br>
 1、细节优化。<br>
 2、后台套餐和次卡券新增匹配房间类型维度。<br>
