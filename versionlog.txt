@@ -1,3 +1,10 @@
+<font color="green">#20261124</font><br>
+1、新增pwa功能，如果浏览器支持，页面右小角会显示安装图标。<br>
+2、套餐新增区间时间段功能。<br>
+3、播放商家公告功能新增自定义文案播报。<br>
+4、细节优化。<br>
+<font color="red">#版本更新</font><br>
+1、下载php-补丁-1024.zip<a href="https://wwbst.lanzoul.com/b0187zv5cb" target="_blank" rel="noopener noreferrer">点击下载密码6666</a>。<br>
 <font color="green">#20261010</font><br>
 1、桌码批量下载新增自定义文字功能。<br>
 2、细节优化。<br>
